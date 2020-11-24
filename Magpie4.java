@@ -30,6 +30,7 @@ public class Magpie4
     public String getResponse(String statement)
     {
         String response = "";
+        System.out.println(findKeyword(statement, "no"));
         if (findKeyword(statement, "no") >= 0)
         {
             response = "Why so negative?";
@@ -104,13 +105,10 @@ public class Magpie4
             // if not, get the get the letter before goal
             String firstLetter = phrase.substring(index-1,index);
             
-            if(firstLetter.equals(" "))
-            {
-                front = true;
-            }
+            
             
             //  is letter compareTo "a" (neg? or pos?) and
-            if(firstLetter.compareTo("a") > 0)
+            if(firstLetter.compareTo("a") < 0)
             {
                 // is letter compareTo "z" (neg? or pos?)
                 if(firstLetter.compareTo("z") > 0)
@@ -118,37 +116,28 @@ public class Magpie4
                     front = true;
                 }
             }
-            // if either is false, set front to false. 
-            else
-            {
-                front = false; 
-            }
-            
+
         }
             
             
             // Test if goal the last word, if so set back to true
             if(index == phrase.length()-goal.length())
-            back = true; 
+                back = true; 
             else
             {
             // if not, get the letter after goal
             int lastIndex = goal.length()+index;
             String lastLetter = phrase.substring(lastIndex,lastIndex+1);
-            if(lastLetter.equals(" "))
-            back = true;
             //  is letter compareTo "a" (neg? or pos?) and
             //  is letter compareTo "z" (neg? or pos?)
-            if(lastLetter.compareTo("a") > 0)
+            if(lastLetter.compareTo("a") < 0)
             {
                 if(lastLetter.compareTo("z") > 0)
-                back = true;
+                    back = true;
             }
             
             
             //      if either is false, set front to false
-            else
-            back = false;
             
             // if front and back are true, return index
             
@@ -194,7 +183,7 @@ public class Magpie4
         double r = Math.random();
         int whichResponse = (int) (r * NUMBER_OF_RESPONSES);
         String response = "";
-
+        System.out.println( whichResponse );
         if (whichResponse == 0)
         {
             response = "Interesting, tell me more.";
