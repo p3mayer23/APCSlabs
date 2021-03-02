@@ -50,12 +50,13 @@ public class DinoDriver2
         */
         
         int roundNum = 1;
-        
-        while(dinoPop.size() > 1)
+        int battleRoundSize = dinoPop.size(); 
+        while(battleRoundSize > 1)
         {
             System.out.println("*********** Round " + (roundNum) + " ***********");  
             DinoDriver2.battleRound(dinoPop); 
             roundNum++; 
+            battleRoundSize = dinoPop.size(); 
         }
         
         for( Dinosaur d : dinoPop ) // d gets assigned to pop[i]
@@ -75,8 +76,9 @@ public class DinoDriver2
         int size = p.size(); 
         int attackerWins = 0;
         int battles = 0;
-        for(Dinosaur d : p)
+        for(int i = 0; i < p.size(); i++)
         {
+            Dinosaur d = p.get(i); 
             if(d.getHealth() > 0)
             {
                 int rand;
